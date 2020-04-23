@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <!--Para el form_title se crea un helper quee pondra el titulo segun corresponda-->
+      <h1>
+        <%= form_title %>
+      </h1>
+      <% if @actor.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @actor.errors.full_messages.each do |msg|%>
+              <li>
+                <%= msg %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form_for @actor do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre del actor" %>
+        </div>
+        <div class="form-group">
+          <%= f.url_field :image_url, class: "form-control input-lg", placeholder: "url foto" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :bio, class: "form-control input-lg", placeholder: "Biografia del actor" %>
+        </div>
+        <div class="form-group">
+          <%= f.radio_button(:alive, 1) %>
+          <%= f.label "Vivo"%>
+          <%= f.radio_button(:alive, 0) %>
+          <%= f.label "Muerto"%>
+        </div>
+        <div class="form-group">
+          <%= f.label "Fecha nacimiento" %>
+          <%= f.date_field :birth_date, class: "form-control input-lg"%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :birth_place, class: "form-control input-lg", placeholder: "Lugar de nacimiento" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Fecha fallecimiento" %>
+          <%= f.date_field :death_date, class: "form-control input-lg"%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :death_place, class: "form-control input-lg", placeholder: "Lugar de fallecimiento" %>
+        </div>
+        <div>
+          <%= f.submit form_title, class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
